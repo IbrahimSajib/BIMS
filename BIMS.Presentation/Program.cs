@@ -1,6 +1,7 @@
 using BIMS.DataAccess.Data;
 using BIMS.DataAccess.IRepository.Auth;
 using BIMS.DataAccess.Repository.Auth;
+using BIMS.Services.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,7 @@ builder.Services.AddDbContext<BIMSDbContext>(options =>
 
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 
 
