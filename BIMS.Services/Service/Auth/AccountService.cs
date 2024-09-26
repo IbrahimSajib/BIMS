@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIMS.Services.Service
+namespace BIMS.Services.Service.Auth
 {
     public class AccountService : IAccountService
     {

@@ -1,7 +1,7 @@
 using BIMS.DataAccess.Data;
 using BIMS.DataAccess.IRepository.Auth;
 using BIMS.DataAccess.Repository.Auth;
-using BIMS.Services.Service;
+using BIMS.Services.Service.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
