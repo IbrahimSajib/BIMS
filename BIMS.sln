@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMS.Presentation", "BIMS.Presentation\BIMS.Presentation.csproj", "{D2D4BD3E-586C-4B1A-BCB3-3AA820E2DCA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMS.Presentation", "BIMS.Presentation\BIMS.Presentation.csproj", "{D2D4BD3E-586C-4B1A-BCB3-3AA820E2DCA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMS.Services", "BIMS.Services\BIMS.Services.csproj", "{C99DC634-56B1-4E30-A1CE-A8B84D055ED5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMS.DataAccess", "BIMS.DataAccess\BIMS.DataAccess.csproj", "{4781E03B-1DAB-4FDE-824B-4DA7740A3B02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{D2D4BD3E-586C-4B1A-BCB3-3AA820E2DCA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2D4BD3E-586C-4B1A-BCB3-3AA820E2DCA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2D4BD3E-586C-4B1A-BCB3-3AA820E2DCA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C99DC634-56B1-4E30-A1CE-A8B84D055ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C99DC634-56B1-4E30-A1CE-A8B84D055ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C99DC634-56B1-4E30-A1CE-A8B84D055ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C99DC634-56B1-4E30-A1CE-A8B84D055ED5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4781E03B-1DAB-4FDE-824B-4DA7740A3B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4781E03B-1DAB-4FDE-824B-4DA7740A3B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4781E03B-1DAB-4FDE-824B-4DA7740A3B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4781E03B-1DAB-4FDE-824B-4DA7740A3B02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
