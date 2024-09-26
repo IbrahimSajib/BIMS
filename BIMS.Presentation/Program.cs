@@ -1,7 +1,20 @@
+using BIMS.DataAccess.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+        .AddEntityFrameworkStores<BIMSDbContext>();
+
+builder.Services.AddDbContext<BIMSDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyCS")));
+
+
 
 var app = builder.Build();
 
