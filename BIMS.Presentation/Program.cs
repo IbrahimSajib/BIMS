@@ -29,6 +29,9 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRoleManagementRepository, RoleManagementRepository>();
 builder.Services.AddScoped<IRoleManagementService, RoleManagementService>();
 
+//For User Management
+builder.Services.AddScoped<IUserManagementRepository, UserManagementRepository>();
+
 
 
 var app = builder.Build();
