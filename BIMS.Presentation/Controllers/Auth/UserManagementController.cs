@@ -1,6 +1,7 @@
 ﻿using BIMS.DataAccess.ViewModels.Auth.UserManagement;
 using BIMS.Services.IService.Auth;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BIMS.Presentation.Controllers.Auth
@@ -8,24 +9,28 @@ namespace BIMS.Presentation.Controllers.Auth
     [Authorize]
     public class UserManagementController : Controller
     {
-        private readonly IUserManagementService userService;
+        private readonly IUserManagementService _userService;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserManagementController(IUserManagementService userService)
+        public UserManagementController(IUserManagementService userService, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            this.userService = userService;
+            _userService = userService;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> UserList()
         {
-            var users = await userService.GetAllUsersAsync();
+            var users = await _userService.GetAllUsersAsync();
             return View(users);
         }
 
         [HttpGet]
         public async Task<IActionResult> EditUser(string id)
         {
-            var user = await userService.GetUserByIdAsync(id);
+            var user = await _userService.GetUserByIdAsync(id);
             if (user == null)
             {
                 ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
@@ -39,7 +44,7 @@ namespace BIMS.Presentation.Controllers.Auth
         [HttpPost]
         public async Task<IActionResult> EditUser(UserVM model)
         {
-            var result = await userService.UpdateUserAsync(model);
+            var result = await _userService.UpdateUserAsync(model);
             if (result.Succeeded)
             {
                 return RedirectToAction("UserList");
@@ -55,7 +60,7 @@ namespace BIMS.Presentation.Controllers.Auth
         [HttpPost]
         public async Task<IActionResult> DeleteUser(string id)
         {
-            var result = await userService.DeleteUserAsync(id);
+            var result = await _userService.DeleteUserAsync(id);
             if (result.Succeeded)
             {
                 return RedirectToAction("UserList");
@@ -68,38 +73,78 @@ namespace BIMS.Presentation.Controllers.Auth
             return View("UserList");
         }
 
+        //Add Or Remove Roles From User
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ManageRolesOfUser(string userId)
         {
             ViewBag.userId = userId;
 
-            var user = await userService.GetUserByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
+                return View("NotFound");
+            }
+            ViewBag.userEmail = user.Email;
+            var model = new List<RolesOfUserVM>();
+
+            foreach (var role in _roleManager.Roles)
+            {
+                var userRolesViewModel = new RolesOfUserVM
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name
+                };
+
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRolesViewModel.IsSelected = true;
+                }
+                else
+                {
+                    userRolesViewModel.IsSelected = false;
+                }
+
+                model.Add(userRolesViewModel);
+            }
+
+            return View(model);
+        }
+
+        //Add Or Remove Roles From User
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ManageRolesOfUser(List<RolesOfUserVM> model, string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
             if (user == null)
             {
                 ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
                 return View("NotFound");
             }
 
-            ViewBag.userEmail = user.Email;
-            var roles = await userService.GetUserRolesAsync(userId);
-            return View(roles);
-        }
+            var roles = await _userManager.GetRolesAsync(user);
+            var result = await _userManager.RemoveFromRolesAsync(user, roles);
 
-        [HttpPost]
-        public async Task<IActionResult> ManageRolesOfUser(List<RolesOfUserVM> model, string userId)
-        {
-            var result = await userService.ManageUserRolesAsync(userId, model);
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-                return RedirectToAction("UserList");
+                ModelState.AddModelError("", "Cannot remove user existing roles");
+                return View(model);
             }
 
-            foreach (var error in result.Errors)
+            result = await _userManager.AddToRolesAsync(user,
+                model.Where(x => x.IsSelected).Select(y => y.RoleName));
+
+            if (!result.Succeeded)
             {
-                ModelState.AddModelError("", error.Description);
+                ModelState.AddModelError("", "Cannot add selected roles to user");
+                return View(model);
             }
 
-            return View(model);
+            return RedirectToAction("UserList");
         }
     }
 
