@@ -15,5 +15,7 @@ namespace BIMS.Services.IService.Auth
         Task<IdentityResult> CreateRoleAsync(string roleName);
         Task<IdentityResult> UpdateRoleAsync(RoleVM model);
         Task<IdentityResult> DeleteRoleAsync(string id);
+        Task<List<UsersInRoleVM>> GetUsersInRoleAsync(string roleId);
+        Task<IdentityResult> ManageUsersInRoleAsync(List<UsersInRoleVM> model, string roleId);
     }
 }
