@@ -31,6 +31,7 @@ builder.Services.AddScoped<IRoleManagementService, RoleManagementService>();
 
 //For User Management
 builder.Services.AddScoped<IUserManagementRepository, UserManagementRepository>();
+builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 
 
 
