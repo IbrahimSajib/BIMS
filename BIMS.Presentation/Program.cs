@@ -1,6 +1,7 @@
 using BIMS.DataAccess.Data;
 using BIMS.DataAccess.IRepository.Auth;
 using BIMS.DataAccess.Repository.Auth;
+using BIMS.Services.IService.Auth;
 using BIMS.Services.Service.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,7 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 
 //For Role Management
 builder.Services.AddScoped<IRoleManagementRepository, RoleManagementRepository>();
-
+builder.Services.AddScoped<IRoleManagementService, RoleManagementService>();
 
 
 
