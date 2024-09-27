@@ -1,10 +1,12 @@
 ﻿using BIMS.DataAccess.ViewModels.Auth.RoleManagement;
 using BIMS.Services.IService.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BIMS.Presentation.Controllers.Auth
 {
+    [Authorize(Roles = "Admin")]
     public class RoleManagementController : Controller
     {
         private readonly IRoleManagementService _roleService;
