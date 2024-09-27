@@ -20,12 +20,12 @@ builder.Services.AddDbContext<BIMSDbContext>(options =>
 
 
 
-
+//For Register and Login
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 
-
-
+//For Role Management
+builder.Services.AddScoped<IRoleManagementRepository, RoleManagementRepository>();
 
 
 
