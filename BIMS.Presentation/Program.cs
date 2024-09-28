@@ -47,6 +47,11 @@ builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 //For Customer
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+
+
+
+
 
 var app = builder.Build();
 
