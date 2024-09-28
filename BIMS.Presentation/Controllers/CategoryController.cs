@@ -1,6 +1,7 @@
 ﻿using BIMS.DataAccess.Models;
 using BIMS.Services.IService;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BIMS.Presentation.Controllers
 {
@@ -81,6 +82,15 @@ namespace BIMS.Presentation.Controllers
             }
             return View(model);
         }
+
+
+        [HttpPost]
+        public async Task<JsonResult> IsCategoryExist(int CategoryId, string CategoryName)
+        {
+            bool result = await _catService.IsCategoryExist(CategoryId, CategoryName);
+            return Json(!result);
+        }
+
 
     }
 }

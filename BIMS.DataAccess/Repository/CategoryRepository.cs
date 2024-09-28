@@ -1,6 +1,7 @@
 ﻿using BIMS.DataAccess.Data;
 using BIMS.DataAccess.IRepository;
 using BIMS.DataAccess.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -53,5 +54,19 @@ namespace BIMS.DataAccess.Repository
             }
             catch { return false; }
         }
+
+
+        public async Task<bool> IsCategoryExist(int CategoryId, string CategoryName)
+        {
+            if (CategoryId > 0)
+            {
+                return await _db.Category.AnyAsync(x => x.CategoryId != CategoryId && x.CategoryName == CategoryName);
+            }
+            else
+            {
+                return await _db.Category.AnyAsync(x => x.CategoryName == CategoryName);
+            }
+        }
+
     }
 }

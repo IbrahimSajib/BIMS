@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -17,6 +18,7 @@ namespace BIMS.DataAccess.Models
 
         [Required]
         [DisplayName("Category Name")]
+        [Remote("IsCategoryExist", "Category", AdditionalFields = "CategoryId,CategoryName", HttpMethod = "POST", ErrorMessage = "Category Already Exist")]
         [StringLength(50)]
         public string CategoryName { get; set; }
 

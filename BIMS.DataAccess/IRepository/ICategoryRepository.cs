@@ -13,5 +13,6 @@ namespace BIMS.DataAccess.IRepository
         Task<Category> GetCategoryById(int CategoryId);
         Task<bool> Create(Category model);
         Task<bool> Edit(Category model);
+        Task<bool> IsCategoryExist(int CategoryId, string CategoryName);
     }
 }
