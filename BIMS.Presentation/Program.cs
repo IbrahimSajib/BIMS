@@ -1,7 +1,11 @@
 using BIMS.DataAccess.Data;
+using BIMS.DataAccess.IRepository;
 using BIMS.DataAccess.IRepository.Auth;
+using BIMS.DataAccess.Repository;
 using BIMS.DataAccess.Repository.Auth;
+using BIMS.Services.IService;
 using BIMS.Services.IService.Auth;
+using BIMS.Services.Service;
 using BIMS.Services.Service.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +37,9 @@ builder.Services.AddScoped<IRoleManagementService, RoleManagementService>();
 builder.Services.AddScoped<IUserManagementRepository, UserManagementRepository>();
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 
+//For Product-Category
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 
 var app = builder.Build();

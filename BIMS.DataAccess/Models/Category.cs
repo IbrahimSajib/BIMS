@@ -19,5 +19,12 @@ namespace BIMS.DataAccess.Models
         [DisplayName("Category Name")]
         [StringLength(50)]
         public string CategoryName { get; set; }
+
+
+        /// <summary>
+        /// 1=Yes,  0=No
+        /// </summary>
+        [Required]
+        public int IsActive { get; set; }
     }
 }
