@@ -50,6 +50,11 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 
+//For Dropdown List
+builder.Services.AddScoped<IDDLRepository, DDLRepository>();
+builder.Services.AddScoped<IDDLService, DDLService>();
+
+
 //For Product
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
