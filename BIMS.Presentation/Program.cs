@@ -43,6 +43,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 //For Supplier
 builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 
 var app = builder.Build();
