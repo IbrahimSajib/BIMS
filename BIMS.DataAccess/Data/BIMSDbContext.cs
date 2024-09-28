@@ -18,6 +18,7 @@ namespace BIMS.DataAccess.Data
 
         public DbSet<Category> Category { get; set; }
         public DbSet<Supplier> Supplier { get; set; }
+        public DbSet<Customer> Customer { get; set; }
 
 
     }
