@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using BIMS.DataAccess.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,10 @@ namespace BIMS.DataAccess.Data
         public BIMSDbContext(DbContextOptions<BIMSDbContext> options) : base(options)
         {
         }
+
+
+        public DbSet<Category> Category { get; set; }
+
+
     }
 }
