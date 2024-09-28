@@ -35,7 +35,7 @@ namespace BIMS.Presentation.Controllers
                 var data = await _catService.Create(model);
                 if (data)
                 {
-                    TempData["success"] = "Successfuly Created";
+                    TempData["success"] = "Category Successfuly Created";
                 }
                 else
                 {
@@ -71,7 +71,7 @@ namespace BIMS.Presentation.Controllers
                 var data = await _catService.Edit(model);
                 if (data)
                 {
-                    TempData["success"] = "Successfuly Updated";
+                    TempData["success"] = "Category Successfuly Updated";
                 }
                 else
                 {
