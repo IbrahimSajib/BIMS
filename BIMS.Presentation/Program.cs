@@ -50,6 +50,8 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 
+//For Product
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 
 

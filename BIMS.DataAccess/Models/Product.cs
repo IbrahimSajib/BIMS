@@ -51,5 +51,10 @@ namespace BIMS.DataAccess.Models
 
         [NotMapped]
         public IEnumerable<SelectListItem> CategoryDDL { get; set; }
+
+
+        [NotMapped]
+        [DisplayName("Category Name")]
+        public string CategoryName { get; set; }
     }
 }
