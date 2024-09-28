@@ -41,6 +41,9 @@ builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
+//For Supplier
+builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
+
 
 var app = builder.Build();
 
