@@ -83,5 +83,12 @@ namespace BIMS.Presentation.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<JsonResult> IsCustomerCodeExist(int CustomerId, string CustomerCode)
+        {
+            bool result = await _cService.IsCustomerCodeExist(CustomerId, CustomerCode);
+            return Json(!result);
+        }
+
     }
 }

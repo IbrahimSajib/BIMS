@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BIMS.DataAccess.Models
 {
@@ -18,6 +19,7 @@ namespace BIMS.DataAccess.Models
         [Required]
         [DisplayName("Customer Code")]
         [StringLength(10)]
+        [Remote("IsCustomerCodeExist", "Customer", AdditionalFields = "CustomerId,CustomerName", HttpMethod = "POST", ErrorMessage = "Customer Code Already Exist")]
         public string CustomerCode { get; set; }
 
         [Required]
