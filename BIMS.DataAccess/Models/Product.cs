@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace BIMS.DataAccess.Models
         [Required]
         [StringLength(50)]
         [DisplayName("Product Name")]
+        [Remote("IsProductExist", "Product", AdditionalFields = "ProductId,ProductName", HttpMethod = "POST", ErrorMessage = "Product Name Already Exist")]
         public string ProductName { get; set; }
 
 
