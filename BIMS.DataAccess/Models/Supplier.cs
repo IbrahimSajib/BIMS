@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -23,6 +24,7 @@ namespace BIMS.DataAccess.Models
         [Required]
         [DisplayName("Supplier Code")]
         [StringLength(10)]
+        [Remote("IsSupplierCodeExist", "Supplier", AdditionalFields = "SupplierId,SupplierName", HttpMethod = "POST", ErrorMessage = "Supplier Code Already Exist")]
         public string SupplierCode { get; set; }
 
         [Required]
