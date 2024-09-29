@@ -15,6 +15,8 @@ namespace BIMS.DataAccess.IRepository
         Task<IEnumerable<SelectListItem>> GetSupplierDDL(int supplierId);
         Task<IEnumerable<SelectListItem>> GetCustomerDDL();
         Task<IEnumerable<SelectListItem>> GetCustomerDDL(int customerId);
-        
+        Task<IEnumerable<SelectListItem>> GetProductDDL();
+        Task<IEnumerable<SelectListItem>> GetActiveProductDDL();
+       
     }
 }
