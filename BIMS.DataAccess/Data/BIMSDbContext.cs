@@ -20,6 +20,8 @@ namespace BIMS.DataAccess.Data
         public DbSet<Supplier> Supplier { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Product> Product { get; set; }
+        public DbSet<PurchaseOrder> PurchaseOrder { get; set; }
+        public DbSet<SalesOrder> SalesOrder { get; set; }
 
 
     }
