@@ -27,11 +27,13 @@ namespace BIMS.DataAccess.Models
 
 
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Minimum Quantity is 1")]
         public int Quantity { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
-        [DisplayName("Purchase Price")]
+        [DisplayName("Unit Price")]
+        [Range(0.01,999999999999999.99)]
         public decimal PurchasePrice { get; set; }
 
 

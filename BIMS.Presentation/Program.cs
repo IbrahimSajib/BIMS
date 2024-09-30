@@ -59,6 +59,10 @@ builder.Services.AddScoped<IDDLService, DDLService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
+//For PurchaseOrder
+builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+builder.Services.AddScoped<IPurchaseServic, PurchaseServic>();
+
 
 
 var app = builder.Build();

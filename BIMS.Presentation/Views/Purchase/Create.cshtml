@@ -1,74 +1,77 @@
-﻿@model BIMS.DataAccess.Models.Product
+﻿@model BIMS.DataAccess.Models.PurchaseOrder
 @{
     ViewData["Title"] = "Create";
 }
 <div class="card my-2 row col-lg-8 mx-auto">
     <div class="card-header">
-        <h3>Add New Product</h3>
+        <h3>Add New Purchase Order</h3>
     </div>
     <div class="card-body">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+
             <div class="row mb-2">
                 <div class="col-2 fw-semibold">
-                    <label asp-for="ProductName" class="col-form-label"></label>
+                    <label asp-for="PurchaseDate" class="col-form-label"></label>
                 </div>
                 <div class="col-6">
-                    <input asp-for="ProductName" class="form-control" />
+                    <input asp-for="PurchaseDate" class="form-control"  type="date"/>
                 </div>
                 <div class="col-4">
-                    <span asp-validation-for="ProductName" class="text-danger"></span>
-                </div>
-            </div>
-            
-            <div class="row mb-2">
-                <div class="col-2 fw-semibold">
-                    <label asp-for="CategoryId" class="col-form-label"></label>
-                </div>
-                <div class="col-6">
-                    @Html.DropDownList("CategoryId", new SelectList(Model.CategoryDDL, "Value", "Text"), "--Select--", new { @class = "form-control" })
-                </div>
-                <div class="col-4">
-                    <span asp-validation-for="CategoryId" class="text-danger"></span>
-                </div>
-            </div>
-            
-            <div class="row mb-2">
-                <div class="col-2 fw-semibold">
-                    <label asp-for="BasePrice" class="col-form-label"></label>
-                </div>
-                <div class="col-6">
-                    <input asp-for="BasePrice" class="form-control" />
-                </div>
-                <div class="col-4">
-                    <span asp-validation-for="BasePrice" class="text-danger"></span>
-                </div>
-            </div>
-            
-            <div class="row mb-2">
-                <div class="col-2 fw-semibold">
-                    <label asp-for="QuantityInStock" class="col-form-label"></label>
-                </div>
-                <div class="col-6">
-                    <input asp-for="QuantityInStock" class="form-control"/>
-                </div>
-                <div class="col-4">
-                    <span asp-validation-for="QuantityInStock" class="text-danger"></span>
+                    <span asp-validation-for="PurchaseDate" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="row mb-2">
                 <div class="col-2 fw-semibold">
-                    <label asp-for="IsActive" class="col-form-label"></label>
+                    <label asp-for="ProductId" class="col-form-label"></label>
                 </div>
                 <div class="col-6">
-                    <input type="checkbox" data-on-text="Yes" data-off-text="No" class="switchBootstrap" name="IsActive" value="1" data-on-color="success" data-off-color="danger" checked />
+                    @Html.DropDownList("ProductId", new SelectList(Model.ProductDDL, "Value", "Text"), "--Select--", new { @class = "form-control" })
                 </div>
                 <div class="col-4">
-                    <span asp-validation-for="IsActive" class="text-danger"></span>
+                    <span asp-validation-for="ProductId" class="text-danger"></span>
                 </div>
             </div>
+            
+            <div class="row mb-2">
+                <div class="col-2 fw-semibold">
+                    <label asp-for="SupplierId" class="col-form-label"></label>
+                </div>
+                <div class="col-6">
+                    @Html.DropDownList("SupplierId", new SelectList(Model.SupplierDDL, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="SupplierId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-2 fw-semibold">
+                    <label asp-for="PurchasePrice" class="col-form-label"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="PurchasePrice" class="form-control" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-2 fw-semibold">
+                    <label asp-for="Quantity" class="col-form-label"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="Quantity" class="form-control" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+            </div>
+
+
 
             <div class="d-flex justify-content-end mt-2">
                 <input type="submit" value="Save Data" class="btn btn-success btn-sm" />
@@ -84,11 +87,3 @@
 
 </div>
 
-
-@section Scripts {
-    <script>
-
-        $(".switchBootstrap").bootstrapSwitch();
-
-    </script>
-}
