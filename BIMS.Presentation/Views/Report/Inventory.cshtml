@@ -52,7 +52,9 @@
             <h2 class="alert alert-success text-center">Inventory Status Report</h2>
             <div class="row">
                 <div class="col">
-                        <a asp-action="Download" class="btn btn-success"><i class="fa-regular fa-file-excel"></i> Download</a>
+                        <button type="submit" class="btn btn-success" formaction="/Report/DownloadInventory">
+                            <i class="fa-regular fa-file-excel"></i> Download
+                        </button>
                 </div>
                 <div class="col-auto">
                         Total Quantity : @Model.TotalQuantity
