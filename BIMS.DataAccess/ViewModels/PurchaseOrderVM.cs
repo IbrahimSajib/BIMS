@@ -30,12 +30,13 @@ namespace BIMS.DataAccess.ViewModels
 
         public int Quantity { get; set; }
 
-        [DisplayName("Purchase Price")]
+        [DisplayName("Unit Price")]
         public decimal PurchasePrice { get; set; }
 
         [DisplayName("Purchase Date")]
         public DateTime PurchaseDate { get; set; }
 
+        [DisplayName("Total Price")]
         public decimal TotalPrice { get; set; }
     }
 }

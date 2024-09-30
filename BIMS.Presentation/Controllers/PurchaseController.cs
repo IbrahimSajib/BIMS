@@ -10,9 +10,10 @@ namespace BIMS.Presentation.Controllers
         private readonly IPurchaseServic _pService;
         private readonly IDDLService _ddlService;
 
-        public PurchaseController(IPurchaseServic pService)
+        public PurchaseController(IPurchaseServic pService, IDDLService ddlService)
         {
             _pService = pService;
+            _ddlService = ddlService;
         }
 
         [HttpGet]
@@ -29,6 +30,8 @@ namespace BIMS.Presentation.Controllers
             PurchaseOrder model = new PurchaseOrder();
             model.ProductDDL = await _ddlService.GetProductDDL();
             model.SupplierDDL = await _ddlService.GetSupplierDDL();
+            model.Quantity = 1;
+            model.PurchasePrice = 1;
             return View(model);
         }
 
@@ -53,5 +56,7 @@ namespace BIMS.Presentation.Controllers
             model.SupplierDDL = await _ddlService.GetSupplierDDL();
             return View(model);
         }
+
+
     }
 }
