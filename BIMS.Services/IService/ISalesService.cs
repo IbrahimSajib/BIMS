@@ -12,5 +12,6 @@ namespace BIMS.Services.IService
     {
         Task<List<SalesOrderVM>> GetAllSalesOrder();
         Task<bool> Create(SalesOrder model);
+        Task<int> GetAvailableQuantityByProductId(int productId);
     }
 }

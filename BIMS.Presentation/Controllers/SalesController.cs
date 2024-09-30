@@ -1,5 +1,6 @@
 ﻿using BIMS.DataAccess.Models;
 using BIMS.Services.IService;
+using BIMS.Services.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BIMS.Presentation.Controllers
@@ -57,6 +58,16 @@ namespace BIMS.Presentation.Controllers
             model.CustomerDDL = await _ddlService.GetCustomerDDL();
             return View(model);
         }
+
+
+        [HttpGet]
+        public async Task<JsonResult> GetAvailableQuantityByProductId(int productId)
+        {
+            var availableQuantity = await _salesService.GetAvailableQuantityByProductId(productId);
+            return Json(availableQuantity);
+        }
+
+
 
     }
 }

@@ -40,7 +40,7 @@
                     <label asp-for="CustomerId" class="col-form-label"></label>
                 </div>
                 <div class="col-6">
-                    @Html.DropDownList("SupplierId", new SelectList(Model.CustomerDDL, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                    @Html.DropDownList("CustomerId", new SelectList(Model.CustomerDDL, "Value", "Text"), "--Select--", new { @class = "form-control" })
                 </div>
                 <div class="col-4">
                     <span asp-validation-for="CustomerId" class="text-danger"></span>
@@ -65,6 +65,7 @@
                 </div>
                 <div class="col-6">
                     <input asp-for="Quantity" class="form-control" />
+                    <span id="quantityError" class="text-danger"></span>
                 </div>
                 <div class="col-4">
                     <span asp-validation-for="Quantity" class="text-danger"></span>
@@ -86,4 +87,51 @@
     </div>
 
 </div>
+
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#ProductId').change(function () {
+                var productId = $(this).val();
+
+                if (productId) {
+                    $.ajax({
+                        url: '@Url.Action("GetAvailableQuantityByProductId", "Sales")',
+                        type: 'GET',
+                        data: { productId: productId },
+                        success: function (data) {
+                            $('#Quantity').attr('max', data);
+
+                            $('#quantityError').text('');
+
+                            if ($('#Quantity').val() > data) {
+                                $('#Quantity').val(data);
+                            }
+                        },
+                        error: function () {
+                            alert('Error fetching available quantity.');
+                        }
+                    });
+                } else {
+                    $('#Quantity').attr('max', '');
+                    $('#quantityError').text('');
+                }
+            });
+
+            $('#Quantity').on('input change', function () {
+                var maxQuantity = parseInt($(this).attr('max'));
+                var enteredQuantity = parseInt($(this).val());
+
+                if (enteredQuantity > maxQuantity) {
+                    $(this).val(maxQuantity); 
+                    $('#quantityError').text('Maximum quantity available in stock is ' + maxQuantity);
+                } else {
+                    $('#quantityError').text('');
+                }
+            });
+        });
+    </script>
+}
 

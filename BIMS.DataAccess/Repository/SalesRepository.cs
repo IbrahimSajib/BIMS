@@ -65,5 +65,14 @@ namespace BIMS.DataAccess.Repository
         }
 
 
+        public async Task<int> GetAvailableQuantityByProductId(int productId)
+        {
+            var product = await _db.Product.FindAsync(productId);
+            int quantity = product.QuantityInStock;
+
+            return quantity;
+        }
+
+
     }
 }
