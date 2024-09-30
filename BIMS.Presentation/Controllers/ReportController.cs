@@ -121,5 +121,72 @@ namespace BIMS.Presentation.Controllers
         }
 
 
+
+        public async Task<FileResult> DownloadPurchase(PurchaseReportVM model)
+        {
+            var data = await _reportService.GetPurchaseReport(model);
+
+            using (var wbook = new XLWorkbook())
+            {
+                var ws = wbook.Worksheets.Add("Pruchase Orders Report");
+
+                //header
+                List<(string Title, int? Width, bool Align_Center, bool Align_Right)> headers =
+                    new List<(string Title, int? Width, bool Align_Center, bool Align_Right)>()
+                    {
+                        (Title: "Purchase Date", Width: 15, Align_Center: false, Align_Right: false),
+                        (Title: "Product Name", Width: 25, Align_Center: false, Align_Right: false),
+                        (Title: "Supplier Name", Width: 25, Align_Center: false, Align_Right: false),
+                        (Title: "Unit Price", Width: 25, Align_Center: false, Align_Right: false),
+                        (Title: "Quantity", Width: 25, Align_Center: false, Align_Right: false),
+                        (Title: "Total Price", Width: 25, Align_Center: false, Align_Right: false),
+                    };
+
+                int row = 1, col = 1;
+
+                for (int i = 0; i < headers.Count; i++)
+                {
+                    ws.Cell(row, col).Value = headers[i].Title;
+
+                    if (headers[i].Width != null)
+                        ws.Column(col).Width = (int)headers[i].Width;
+
+                    if (headers[i].Align_Center)
+                        ws.Column(col).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+
+                    else if (headers[i].Align_Right)
+                        ws.Column(col).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
+
+                    col++;
+                }
+                ws.Row(row).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                ws.Row(row).Style.Font.Bold = true;
+
+                row++;
+
+                foreach (var item in model.PurchaseOrderList)
+                {
+                    col = 1;
+                    ws.Cell(row, col++).Value = item.PurchaseDate.ToString("dd/MMM/yyyy");
+                    ws.Cell(row, col++).Value = item.ProductName;
+                    ws.Cell(row, col++).Value = item.SupplierName;
+                    ws.Cell(row, col++).Value = item.PurchasePrice;
+                    ws.Cell(row, col++).Value = item.Quantity;
+                    ws.Cell(row, col++).Value = item.TotalPrice;
+
+                    row++;
+                }
+                ws.Columns().AdjustToContents();
+
+                using (var stream = new System.IO.MemoryStream())
+                {
+                    wbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Purchase_Orders_Report_" + System.DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss_tt") + ".xlsx");
+                }
+            }
+        }
+
+
     }
 }
