@@ -32,7 +32,7 @@ namespace BIMS.DataAccess.Models
 
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
-        [DisplayName("Sale Price")]
+        [DisplayName("Unit Price")]
         [Range(0.01, 999999999999999.99)]
         public decimal SalePrice { get; set; }
 
