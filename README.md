@@ -30,8 +30,8 @@
 - when Sales Orders created Quantity decrese from Product table.
 - In Sales Order when product is selected from dropdown ajax request is called for get the available quantity of the product, User can not input more than availabe Product.
 
-##credentials
-- Role:SuperAdmin | Email: superadmin@bims.com | Password: Sa@123
-- Role:Admin | Email: admin@bims.com | Password: Ad@123
+## Credentials
+- Role: SuperAdmin | Email: superadmin@bims.com | Password: Sa@123
+- Role: Admin | Email: admin@bims.com | Password: Ad@123
 - OtherUser: | Email: ibrahim@bims.com | Password : Ibr@56
 
