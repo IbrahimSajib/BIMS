@@ -101,5 +101,25 @@ namespace BIMS.Presentation.Controllers
         }
 
 
+
+        public async Task<IActionResult> Purchase()
+        {
+            PurchaseReportVM model = new PurchaseReportVM();
+            model.ProductDDL = await _ddlService.GetProductDDL();
+            ViewBag.ShowResult = false;
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Purchase(PurchaseReportVM model)
+        {
+            var data = await _reportService.GetPurchaseReport(model);
+            data.ProductDDL = await _ddlService.GetProductDDL();
+            ViewBag.ShowResult = true;
+            return View(data);
+        }
+
+
     }
 }

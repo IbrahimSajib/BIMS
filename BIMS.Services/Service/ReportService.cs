@@ -27,5 +27,10 @@ namespace BIMS.Services.Service
         {
             return await _rRepo.GetInventoryReport(model);
         }
+
+        public async Task<PurchaseReportVM> GetPurchaseReport(PurchaseReportVM model)
+        {
+            return await _rRepo.GetPurchaseReport(model);
+        }
     }
 }

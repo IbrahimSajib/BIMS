@@ -11,5 +11,6 @@ namespace BIMS.Services.IService
     {
         Task<TotalItemVM> GetTotalItemCount();
         Task<InventoryReportVM> GetInventoryReport(InventoryReportVM model);
+        Task<PurchaseReportVM> GetPurchaseReport(PurchaseReportVM model);
     }
 }
