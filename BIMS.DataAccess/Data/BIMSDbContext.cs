@@ -24,5 +24,14 @@ namespace BIMS.DataAccess.Data
         public DbSet<SalesOrder> SalesOrder { get; set; }
 
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.SeedRole();
+            builder.SeedUser();
+            builder.SeedUserRole();
+        }
+
     }
 }

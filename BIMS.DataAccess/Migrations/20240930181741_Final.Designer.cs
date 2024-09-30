@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BIMS.DataAccess.Migrations
 {
     [DbContext(typeof(BIMSDbContext))]
-    [Migration("20240928170222_Customer Table Added")]
-    partial class CustomerTableAdded
+    [Migration("20240930181741_Final")]
+    partial class Final
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,102 @@ namespace BIMS.DataAccess.Migrations
                     b.ToTable("Customer");
                 });
 
+            modelBuilder.Entity("BIMS.DataAccess.Models.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+
+                    b.Property<decimal>("BasePrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IsActive")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("QuantityInStock")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("BIMS.DataAccess.Models.PurchaseOrder", b =>
+                {
+                    b.Property<int>("PurchaseOrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseOrderId"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("PurchasePrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PurchaseOrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("PurchaseOrder");
+                });
+
+            modelBuilder.Entity("BIMS.DataAccess.Models.SalesOrder", b =>
+                {
+                    b.Property<int>("SalesOrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SalesOrderId"));
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SaleDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("SalePrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.HasKey("SalesOrderId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("SalesOrder");
+                });
+
             modelBuilder.Entity("BIMS.DataAccess.Models.Supplier", b =>
                 {
                     b.Property<int>("SupplierId")
@@ -133,6 +229,20 @@ namespace BIMS.DataAccess.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "70cecf66-f00e-406f-ae29-0feb2183689c",
+                            Name = "SuperAdmin",
+                            NormalizedName = "SUPERADMIN"
+                        },
+                        new
+                        {
+                            Id = "f672f1be-450b-4899-b9a5-13a0ff856015",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -223,6 +333,72 @@ namespace BIMS.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "c02f71c8-a822-4b3a-900c-5c62478b32f0",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1494b8b6-1559-456a-a4be-60f1599818f0",
+                            Email = "superadmin@bims.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SUPERADMIN@BIMS.COM",
+                            NormalizedUserName = "SUPERADMIN@BIMS.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB6bAUXc5eROUr+HTDcIbHQR7KEqrndvTLp+Nl9CYo4P955qRwka4EeLNzuMV1v80Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2d1e164c-7474-479c-9cda-9067f3cf1e91",
+                            TwoFactorEnabled = false,
+                            UserName = "superadmin@bims.com"
+                        },
+                        new
+                        {
+                            Id = "4b9d054d-bcb0-475e-96be-7e07d5ee3b85",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ef1d528e-9dee-448c-8cc3-721ed1ef8215",
+                            Email = "admin@bims.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@BIMS.COM",
+                            NormalizedUserName = "ADMIN@BIMS.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAd+aZVh+YhEDjY2e5U9oSuNt65Ix9lCGeXrkU+tIniCSys52hxkjpP6Eh3eBVDE1Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3af9c2f4-7414-46a3-8534-873cc4346e76",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@bims.com"
+                        },
+                        new
+                        {
+                            Id = "b7f46612-41d2-47ba-af30-f957a680d92a",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d9136c90-6e31-4ff8-8d1c-c532f1dd6375",
+                            Email = "ibrahim@bims.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "IBRAHIM@BIMS.COM",
+                            NormalizedUserName = "IBRAHIM@BIMS.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMHO62qweCOAtFm+ZMUPmmDDmoHPFNqpezT7B3Rx8QwJ8tF1kvTy9kDezK4ZAaGHgw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0068022c-96bb-44a6-b98f-8e2f7775caf9",
+                            TwoFactorEnabled = false,
+                            UserName = "ibrahim@bims.com"
+                        },
+                        new
+                        {
+                            Id = "0442b285-375d-48a0-8f47-d6e21bf342c9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "adffc881-af38-4d8a-8731-144bb175678d",
+                            Email = "sajib@bims.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SAJIB@BIMS.COM",
+                            NormalizedUserName = "SAJIB@BIMS.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJRMBbr9j6+zcHM39STb8YeuMXvF17VPVdo+FDiPJC7N14cFed0X28E+CgDHcGk74A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "83fccd93-2a9f-4b75-9135-be7eb839a725",
+                            TwoFactorEnabled = false,
+                            UserName = "sajib@bims.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -285,6 +461,18 @@ namespace BIMS.DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "c02f71c8-a822-4b3a-900c-5c62478b32f0",
+                            RoleId = "70cecf66-f00e-406f-ae29-0feb2183689c"
+                        },
+                        new
+                        {
+                            UserId = "4b9d054d-bcb0-475e-96be-7e07d5ee3b85",
+                            RoleId = "f672f1be-450b-4899-b9a5-13a0ff856015"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -304,6 +492,51 @@ namespace BIMS.DataAccess.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("BIMS.DataAccess.Models.Product", b =>
+                {
+                    b.HasOne("BIMS.DataAccess.Models.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("BIMS.DataAccess.Models.PurchaseOrder", b =>
+                {
+                    b.HasOne("BIMS.DataAccess.Models.Product", "Product")
+                        .WithMany("PurchaseOrders")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BIMS.DataAccess.Models.Supplier", "Supplier")
+                        .WithMany("PurchaseOrders")
+                        .HasForeignKey("SupplierId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("BIMS.DataAccess.Models.SalesOrder", b =>
+                {
+                    b.HasOne("BIMS.DataAccess.Models.Customer", "Customer")
+                        .WithMany("SalesOrders")
+                        .HasForeignKey("CustomerId");
+
+                    b.HasOne("BIMS.DataAccess.Models.Product", "Product")
+                        .WithMany("SalesOrders")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -355,6 +588,28 @@ namespace BIMS.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BIMS.DataAccess.Models.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("BIMS.DataAccess.Models.Customer", b =>
+                {
+                    b.Navigation("SalesOrders");
+                });
+
+            modelBuilder.Entity("BIMS.DataAccess.Models.Product", b =>
+                {
+                    b.Navigation("PurchaseOrders");
+
+                    b.Navigation("SalesOrders");
+                });
+
+            modelBuilder.Entity("BIMS.DataAccess.Models.Supplier", b =>
+                {
+                    b.Navigation("PurchaseOrders");
                 });
 #pragma warning restore 612, 618
         }

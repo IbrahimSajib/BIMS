@@ -226,6 +226,20 @@ namespace BIMS.DataAccess.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "70cecf66-f00e-406f-ae29-0feb2183689c",
+                            Name = "SuperAdmin",
+                            NormalizedName = "SUPERADMIN"
+                        },
+                        new
+                        {
+                            Id = "f672f1be-450b-4899-b9a5-13a0ff856015",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -316,6 +330,72 @@ namespace BIMS.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "c02f71c8-a822-4b3a-900c-5c62478b32f0",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1494b8b6-1559-456a-a4be-60f1599818f0",
+                            Email = "superadmin@bims.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SUPERADMIN@BIMS.COM",
+                            NormalizedUserName = "SUPERADMIN@BIMS.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB6bAUXc5eROUr+HTDcIbHQR7KEqrndvTLp+Nl9CYo4P955qRwka4EeLNzuMV1v80Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2d1e164c-7474-479c-9cda-9067f3cf1e91",
+                            TwoFactorEnabled = false,
+                            UserName = "superadmin@bims.com"
+                        },
+                        new
+                        {
+                            Id = "4b9d054d-bcb0-475e-96be-7e07d5ee3b85",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ef1d528e-9dee-448c-8cc3-721ed1ef8215",
+                            Email = "admin@bims.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@BIMS.COM",
+                            NormalizedUserName = "ADMIN@BIMS.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAd+aZVh+YhEDjY2e5U9oSuNt65Ix9lCGeXrkU+tIniCSys52hxkjpP6Eh3eBVDE1Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3af9c2f4-7414-46a3-8534-873cc4346e76",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@bims.com"
+                        },
+                        new
+                        {
+                            Id = "b7f46612-41d2-47ba-af30-f957a680d92a",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d9136c90-6e31-4ff8-8d1c-c532f1dd6375",
+                            Email = "ibrahim@bims.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "IBRAHIM@BIMS.COM",
+                            NormalizedUserName = "IBRAHIM@BIMS.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMHO62qweCOAtFm+ZMUPmmDDmoHPFNqpezT7B3Rx8QwJ8tF1kvTy9kDezK4ZAaGHgw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0068022c-96bb-44a6-b98f-8e2f7775caf9",
+                            TwoFactorEnabled = false,
+                            UserName = "ibrahim@bims.com"
+                        },
+                        new
+                        {
+                            Id = "0442b285-375d-48a0-8f47-d6e21bf342c9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "adffc881-af38-4d8a-8731-144bb175678d",
+                            Email = "sajib@bims.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SAJIB@BIMS.COM",
+                            NormalizedUserName = "SAJIB@BIMS.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJRMBbr9j6+zcHM39STb8YeuMXvF17VPVdo+FDiPJC7N14cFed0X28E+CgDHcGk74A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "83fccd93-2a9f-4b75-9135-be7eb839a725",
+                            TwoFactorEnabled = false,
+                            UserName = "sajib@bims.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -378,6 +458,18 @@ namespace BIMS.DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "c02f71c8-a822-4b3a-900c-5c62478b32f0",
+                            RoleId = "70cecf66-f00e-406f-ae29-0feb2183689c"
+                        },
+                        new
+                        {
+                            UserId = "4b9d054d-bcb0-475e-96be-7e07d5ee3b85",
+                            RoleId = "f672f1be-450b-4899-b9a5-13a0ff856015"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
