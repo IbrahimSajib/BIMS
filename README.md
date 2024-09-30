@@ -1,6 +1,6 @@
 # Basic Inventory Management System
 
-## Technologies
+## Technologies :
 - Language: C#
 - Framework: ASP .NET Core v8.0
 - Database: MSSQL Server
@@ -10,7 +10,7 @@
 - Other : HTML, CSS, Bootstrap, Fontawesome
 - Return Type : File(Excel), Json
 
-## Features
+## Features :
 - Registation with Email & Password
 - Login with Email & Password
 - Role Based Authorization
@@ -30,7 +30,11 @@
 - when Sales Orders created Quantity decrese from Product table.
 - In Sales Order when product is selected from dropdown ajax request is called for get the available quantity of the product, User can not input more than availabe Product.
 
-## Credentials
+## Database Diagrams :
+![BIMS Database Diagrams](https://github.com/user-attachments/assets/ea3231ff-ed2f-4cbe-bd65-b5f53cbd77a8)
+
+
+## Credentials :
 - Role: SuperAdmin | Email: superadmin@bims.com | Password: Sa@123
 - Role: Admin | Email: admin@bims.com | Password: Ad@123
 - OtherUser: | Email: ibrahim@bims.com | Password : Ibr@56
