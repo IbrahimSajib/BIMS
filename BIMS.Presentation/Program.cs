@@ -64,6 +64,10 @@ builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
 builder.Services.AddScoped<IPurchaseServic, PurchaseServic>();
 
 
+//For SalesOrder
+builder.Services.AddScoped<ISalesRepository, SalesRepository>();
+
+
 
 var app = builder.Build();
 
