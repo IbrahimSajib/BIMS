@@ -61,6 +61,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 
 //For PurchaseOrder
 builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+builder.Services.AddScoped<IPurchaseServic, PurchaseServic>();
 
 
 
