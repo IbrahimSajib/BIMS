@@ -188,5 +188,25 @@ namespace BIMS.Presentation.Controllers
         }
 
 
+
+        public async Task<IActionResult> Sales()
+        {
+            SalesReportVM model = new SalesReportVM();
+            model.ProductDDL = await _ddlService.GetProductDDL();
+            ViewBag.ShowResult = false;
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Sales(SalesReportVM model)
+        {
+            var data = await _reportService.GetSalesReport(model);
+            data.ProductDDL = await _ddlService.GetProductDDL();
+            ViewBag.ShowResult = true;
+            return View(data);
+        }
+
+
     }
 }
