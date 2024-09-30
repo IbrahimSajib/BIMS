@@ -1,0 +1,41 @@
+﻿using BIMS.DataAccess.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BIMS.DataAccess.ViewModels
+{
+    public class PurchaseOrderVM
+    {
+        public int PurchaseOrderId { get; set; }
+
+
+        [DisplayName("Product")]
+        public int ProductId { get; set; }
+
+        [DisplayName("Product Name")]
+        public string ProductName { get; set; }
+
+
+        [DisplayName("Supplier")]
+        public int? SupplierId { get; set; }
+        
+        [DisplayName("Supplier Name")]
+        public string SupplierName { get; set; }
+
+
+        public int Quantity { get; set; }
+
+        [DisplayName("Purchase Price")]
+        public decimal PurchasePrice { get; set; }
+
+        [DisplayName("Purchase Date")]
+        public DateTime PurchaseDate { get; set; }
+
+        public decimal TotalPrice { get; set; }
+    }
+}
