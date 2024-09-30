@@ -1,4 +1,5 @@
 using BIMS.Presentation.Models;
+using BIMS.Services.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,16 +9,19 @@ namespace BIMS.Presentation.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IReportService _reportService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IReportService reportService)
         {
             _logger = logger;
+            _reportService = reportService;
         }
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var data = await _reportService.GetTotalItemCount();
+            return View(data);
         }
 
 
