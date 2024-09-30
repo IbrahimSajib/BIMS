@@ -62,5 +62,9 @@ namespace BIMS.DataAccess.Models
         [NotMapped]
         [DisplayName("Category Name")]
         public string CategoryName { get; set; }
+
+
+        [NotMapped]
+        public decimal TotalPrice { get; set; }
     }
 }

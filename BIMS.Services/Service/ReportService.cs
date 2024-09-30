@@ -22,5 +22,10 @@ namespace BIMS.Services.Service
         {
             return await _rRepo.GetTotalItemCount();
         }
+
+        public async Task<InventoryReportVM> GetInventoryReport(InventoryReportVM model)
+        {
+            return await _rRepo.GetInventoryReport(model);
+        }
     }
 }

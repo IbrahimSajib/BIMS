@@ -10,5 +10,6 @@ namespace BIMS.DataAccess.IRepository
     public interface IReportRepository
     {
         Task<TotalItemVM> GetTotalItemCount();
+        Task<InventoryReportVM> GetInventoryReport(InventoryReportVM model);
     }
 }

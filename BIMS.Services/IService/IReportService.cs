@@ -10,5 +10,6 @@ namespace BIMS.Services.IService
     public interface IReportService
     {
         Task<TotalItemVM> GetTotalItemCount();
+        Task<InventoryReportVM> GetInventoryReport(InventoryReportVM model);
     }
 }
