@@ -67,5 +67,10 @@ namespace BIMS.Services.Service
             }
         }
 
+        public async Task<IEnumerable<SelectListItem>> GetAvailableProductDDL()
+        {
+            return await _ddlRepo.GetAvailableProductDDL();
+        }
+
     }
 }
