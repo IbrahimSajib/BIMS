@@ -1,10 +1,12 @@
 ﻿using BIMS.DataAccess.Models;
 using BIMS.Services.IService;
 using BIMS.Services.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BIMS.Presentation.Controllers
 {
+    [Authorize]
     public class PurchaseController : Controller
     {
         private readonly IPurchaseServic _pService;

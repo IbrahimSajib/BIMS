@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BIMS.Presentation.Controllers.Auth
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class RoleManagementController : Controller
     {
         private readonly IRoleManagementService _roleService;

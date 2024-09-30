@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BIMS.Presentation.Controllers.Auth
 {
-    [Authorize]
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class UserManagementController : Controller
     {
         private readonly IUserManagementService _userService;
@@ -75,7 +75,7 @@ namespace BIMS.Presentation.Controllers.Auth
 
         //Add Or Remove Roles From User
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> ManageRolesOfUser(string userId)
         {
             ViewBag.userId = userId;
@@ -115,7 +115,7 @@ namespace BIMS.Presentation.Controllers.Auth
 
         //Add Or Remove Roles From User
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> ManageRolesOfUser(List<RolesOfUserVM> model, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);

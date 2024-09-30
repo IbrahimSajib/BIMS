@@ -1,9 +1,11 @@
 ﻿using BIMS.DataAccess.Models;
 using BIMS.Services.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BIMS.Presentation.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;

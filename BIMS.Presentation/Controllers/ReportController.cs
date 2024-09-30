@@ -1,10 +1,12 @@
 ﻿using BIMS.DataAccess.ViewModels;
 using BIMS.Services.IService;
 using ClosedXML.Excel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BIMS.Presentation.Controllers
 {
+    [Authorize]
     public class ReportController : Controller
     {
         private readonly IReportService _reportService;
